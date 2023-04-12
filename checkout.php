@@ -49,6 +49,8 @@ if(isset($_POST['order_btn'])){
    
 }
 
+ 
+
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +94,12 @@ if(isset($_POST['order_btn'])){
       echo '<p class="empty">your cart is empty</p>';
    }
    ?>
-   <div class="grand-total"> grand total : <span>$<?php echo $grand_total; ?>/-</span> </div>
+   <div class="grand-total"> grand total : <span>$<?php echo $grand_total; ?>/-</span> 
+         <?php
+
+    
+      ?>
+</div>
 
 </section>
 

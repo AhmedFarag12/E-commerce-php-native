@@ -4,10 +4,11 @@ include 'config.php';
 
 session_start();
 
-$user_id = $_SESSION['user_id'];
+$user_id = isset( $_SESSION['user_id']);
 
 if(!isset($user_id)){
    header('location:login.php');
+
 }
 
 if(isset($_POST['add_to_cart'])){
@@ -43,7 +44,6 @@ if(isset($_POST['add_to_cart'])){
      <link rel="stylesheet" href="css/aos.css">
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
@@ -77,11 +77,13 @@ if(isset($_POST['add_to_cart'])){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
      <form action="" method="post" class="box">
+      
       <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
       <div class="name"><?php echo $fetch_products['name']; ?></div>
       <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
       <input type="number" min="1" name="product_quantity" value="1" class="qty">
       <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+      <h3 style="word-wrap: break-word;" name="product_description"><?php echo $fetch_products['description']; ?></h3>
       <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
       <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
       <input type="submit" value="add to cart" name="add_to_cart" class="btn">
@@ -141,6 +143,6 @@ if(isset($_POST['add_to_cart'])){
      <script src="js/aos.js"></script>
      <script src="js/smoothscroll.js"></script>
       <script src="js/script.js?v=<?php echo time(); ?>"></script>
-
+      
 </body>
 </html>

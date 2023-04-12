@@ -83,6 +83,8 @@ if(isset($_GET['delete_all'])){
       }else{
          echo '<p class="empty">your cart is empty</p>';
       }
+
+    
       ?>
    </div>
 
@@ -92,6 +94,13 @@ if(isset($_GET['delete_all'])){
 
    <div class="cart-total">
       <p>grand total : <span>$<?php echo $grand_total; ?>/-</span></p>
+
+      <?php
+
+      if( $grand_total > 300){
+          echo '<p style="color:#8e44ad;"> >>No Shipping expenses<< </p>';
+      }
+   ?>
       <div class="flex">
          <a href="shop.php" class="option-btn">continue shopping</a>
          <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':'disabled'; ?>">proceed to checkout</a>

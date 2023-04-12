@@ -9,6 +9,8 @@ if(isset($message)){
       ';
    }
 }
+
+
 ?>
 
 <header class="header">
@@ -21,7 +23,10 @@ if(isset($message)){
             <a href="#" class="fab fa-instagram"></a>
             <a href="#" class="fab fa-linkedin"></a>
          </div>
-         <p> new <a href="login.php">login</a> | <a href="register.php">register</a> </p>
+         
+         <p> new! <a href="login.php">login</a> | <a href="register.php">register</a> </p>
+
+
       </div>
    </div>
 
@@ -45,14 +50,36 @@ if(isset($message)){
                $select_cart_number = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
                $cart_rows_number = mysqli_num_rows($select_cart_number); 
             ?>
+            <?php
+               if(isset($_SESSION['user_name']) && isset($_SESSION['user_email'])) {
+                  ?>
             <a href="cart.php"> <i class="fas fa-shopping-cart"></i> <span>(<?php echo $cart_rows_number; ?>)</span> </a>
+            <?php
+            }
+            ?>
          </div>
 
+         <?php
+         if(isset($_SESSION['user_name']) && isset($_SESSION['user_email'])) {
+            ?>
          <div class="user-box">
-            <p>username : <span><?php echo $_SESSION['user_name']; ?></span></p>
-            <p>email : <span><?php echo $_SESSION['user_email']; ?></span></p>
+            <p>username : <span>
+               <?php 
+               if(isset($_SESSION['user_name']))
+                  echo $_SESSION['user_name']; 
+            ?>
+            </span></p>
+            <p>email : <span>
+               <?php
+              if(isset($_SESSION['user_email']))
+               echo $_SESSION['user_email']; ?>
+            
+            </span></p>
             <a href="logout.php" class="delete-btn">logout</a>
          </div>
+         <?php
+            }
+            ?>
       </div>
    </div>
 
